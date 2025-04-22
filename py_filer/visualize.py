@@ -12,7 +12,7 @@ def load_data(building_id):
     return domain, interior
 
 # Function to visualize data
-def visualize(building_id):
+def visualize(building_id, name):
     domain, interior = load_data(building_id)
     
     fig, ax = plt.subplots(1, 2, figsize=(12, 6))
@@ -24,8 +24,9 @@ def visualize(building_id):
     ax[1].set_title(f'Interior Mask ({building_id})')
     
     plt.show()
+    plt.savefig(name)
 
 # Example usage
-building_ids = ['00001', '00002', '00003']  # Replace with actual IDs from the dataset
+building_ids = ['10000', '10009', '10014']  # Replace with actual IDs from the dataset
 for bid in building_ids:
-    visualize(bid)
+    visualize(bid, bid)
