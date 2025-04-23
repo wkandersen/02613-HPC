@@ -1,0 +1,56 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24765936: <gpujob> in cluster <dcc> Done
+
+Job <gpujob> was submitted from host <n-62-30-7> by user <s224227> in cluster <dcc> at Wed Apr 23 15:23:35 2025
+Job was executed on host(s) <4*n-62-18-5>, in queue <gpua10>, as user <s224227> in cluster <dcc> at Wed Apr 23 15:23:36 2025
+</zhome/d1/b/187261> was used as the home directory.
+</zhome/d1/b/187261/Desktop/02613-HPC> was used as the working directory.
+Started at Wed Apr 23 15:23:36 2025
+Terminated at Wed Apr 23 20:11:53 2025
+Results reported at Wed Apr 23 20:11:53 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpua10
+#BSUB -J gpujob
+#BSUB -n 4
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -W 6:00
+#BSUB -o 12_cupy_%J.out
+#BSUB -e 12_cupy_%J.err
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613
+
+python py_filer/12_all.py 4571
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   17188.27 sec.
+    Max Memory :                                 288 MB
+    Average Memory :                             263.94 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               16096.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                8
+    Run time :                                   17321 sec.
+    Turnaround time :                            17298 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <12_cupy_24765936.err> for stderr output of this job.
+
