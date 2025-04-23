@@ -1,0 +1,61 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24765684: <parallelize_time> in cluster <dcc> Done
+
+Job <parallelize_time> was submitted from host <n-62-30-7> by user <s224227> in cluster <dcc> at Wed Apr 23 14:47:31 2025
+Job was executed on host(s) <n-62-31-21>, in queue <hpc>, as user <s224227> in cluster <dcc> at Wed Apr 23 14:47:32 2025
+</zhome/d1/b/187261> was used as the home directory.
+</zhome/d1/b/187261/Desktop/02613-HPC> was used as the working directory.
+Started at Wed Apr 23 14:47:32 2025
+Terminated at Wed Apr 23 14:47:34 2025
+Results reported at Wed Apr 23 14:47:34 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+
+#BSUB -J parallelize_time
+#BSUB -q hpc
+#BSUB -W 5
+#BSUB -R "rusage[mem=2G]" 
+#BSUB -R "select[model == XeonGold6126]"
+#BSUB -R "span[hosts=1]"
+#BSUB -n 1
+#BSUB -o parallelize_time_%J.out
+#BSUB -e parallelize_time_%J.err
+
+export PYTHONPATH=$PYTHONPATH:$(pwd)/py_filer
+
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613
+
+python py_filer/5_calculations.py "5_parallelize_24764762.err"
+# python py_filer/5_calculations.py "6_parallelize_24763394.err"
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1.97 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     2048.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   2 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <parallelize_time_24765684.err> for stderr output of this job.
+
