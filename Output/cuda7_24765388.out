@@ -1,0 +1,76 @@
+NumPy Jacobi time: 5.1757 seconds
+Interior points for building 1:
+[[105 480]
+ [105 481]
+ [106 476]
+ [106 477]
+ [106 478]]
+Initial u values:
+[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+Iteration 1:
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24765388: <numbacuda> in cluster <dcc> Exited
+
+Job <numbacuda> was submitted from host <n-62-27-22> by user <s224225> in cluster <dcc> at Wed Apr 23 14:04:13 2025
+Job was executed on host(s) <4*n-62-18-5>, in queue <gpua10>, as user <s224225> in cluster <dcc> at Wed Apr 23 14:04:14 2025
+</zhome/5f/a/186998> was used as the home directory.
+</zhome/5f/a/186998/Desktop/HPC_course/02613-HPC> was used as the working directory.
+Started at Wed Apr 23 14:04:14 2025
+Terminated at Wed Apr 23 14:04:49 2025
+Results reported at Wed Apr 23 14:04:49 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+
+#BSUB -J numbacuda
+#BSUB -q gpua10
+#BSUB -W 00:10
+#BSUB -n 4
+#BSUB -R "rusage[mem=1G]" 
+#BSUB -R "span[hosts=1]"
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -n 1
+#BSUB -o Output/cuda7_%J.out
+#BSUB -e Output/cuda7_%J.err
+
+
+export PYTHONPATH=$PYTHONPATH:$(pwd)/py_filer
+
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613
+
+python py_filer/simulate_numba_cuda.py 
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   30.96 sec.
+    Max Memory :                                 104 MB
+    Average Memory :                             104.00 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               3992.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   74 sec.
+    Turnaround time :                            36 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <Output/cuda7_24765388.err> for stderr output of this job.
+
