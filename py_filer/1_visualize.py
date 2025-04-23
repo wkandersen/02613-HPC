@@ -12,7 +12,7 @@ def load_data(building_id):
     return domain, interior
 
 # Function to visualize data
-def visualize(building_id):
+def visualize(building_id, name):
     domain, interior = load_data(building_id)
     
     fig, ax = plt.subplots(1, 2, figsize=(12, 6))
@@ -29,4 +29,4 @@ def visualize(building_id):
 # Example usage
 building_ids = ['1330', '1331', '1332']  
 for bid in building_ids:
-    visualize(bid)
+    visualize(bid, bid)
