@@ -1,7 +1,8 @@
 import re
 import matplotlib.pyplot as plt
+import sys
 
-file_path = "02613-HPC/Output/simulate_time_24561153.err"
+file_path = sys.argv[1]
 
 # Read and extract real times
 with open(file_path, 'r') as f:
@@ -21,23 +22,28 @@ plt.xlabel('Run Index')
 plt.ylabel('Speed-up')
 plt.grid(True)
 plt.tight_layout()
-plt.savefig('Speed-ups')
+plt.savefig(f'Speed-ups{sys.argv[1]}.png')
 
 # real_seconds[0] is the baseline sequential time
 baseline = real_seconds[0]
 
 parallel_fractions = {}
 
-for i, current_time in enumerate(real_seconds):
-    p = i + 1
-    s = baseline / current_time if i != 0 else 1
+with open(f'calc_{sys.argv[1]}.txt', 'w') as t:
+    for i, current_time in enumerate(real_seconds):
+        p = i + 1
+        s = baseline / current_time if i != 0 else 1
 
-    if p == 1:
-        f = 0.0
-    else:
-        f = (p * (s - 1)) / (s * (p - 1)) # using amd
+        if p == 1:
+            f = 0.0
+        else:
+            f = (p * (s - 1)) / (s * (p - 1)) # using amd
+            f = round(f, 1)
 
-    parallel_fractions[p] = f
-    print(f'Parallel fraction for p={p} is {f:.4f}')
-    print(f'Theoretical maximum speed up: {1/(1-f)}')
-
+        parallel_fractions[p] = f
+        
+    
+        t.write(f'p = {p}\n')
+        t.write(f'Parallel fraction: {f:.1f}\n')
+        t.write(f'Theoretical maximum speed up: {1/(1-f)}\n')
+        t.write(f'Calculated speed up: {s:.1f}\n')
