@@ -12,4 +12,4 @@ source /dtu/projects/02613_2025/conda/conda_init.sh
 conda activate 02613
 
 # Run the profiler
-nsys profile -o 10_nsys python 02613-HPC/py_filer/9_cupy 10
+nsys profile -o 10_nsys python 02613-HPC/py_filer/9_cupy.py 10
