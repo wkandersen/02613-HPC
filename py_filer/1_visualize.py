@@ -24,16 +24,9 @@ def visualize(building_id, name):
     ax[1].set_title(f'Interior Mask ({building_id})')
     
     plt.show()
-<<<<<<< HEAD
-    plt.savefig(name)
-
-# Example usage
-building_ids = ['10000', '10009', '10014']  # Replace with actual IDs from the dataset
-=======
     plt.savefig(f'visualize{building_id}')
 
 # Example usage
 building_ids = ['1330', '1331', '1332']  
->>>>>>> 05fac37cd64a701eccd9250840bf5ee512a54a41
 for bid in building_ids:
     visualize(bid, bid)
