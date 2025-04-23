@@ -1,0 +1,24 @@
+import re
+import matplotlib.pyplot as plt
+
+file_path = "02613-HPC/Output/simulate_time_24561153.err"
+
+# Read and extract real times
+with open(file_path, 'r') as f:
+    content = f.read()
+
+real_times = re.findall(r'real\s+(\d+)m([\d.]+)s', content)
+real_seconds = [int(m) * 60 + float(s) for m, s in real_times]
+
+# Calculate speed-ups as a dictionary
+speed_up = {i+1: real_seconds[0] / real_seconds[i] for i in range(1, len(real_seconds))}
+
+# Plot
+plt.figure(figsize=(8, 5))
+plt.plot(list(speed_up.keys()), list(speed_up.values()), marker='o', linestyle='-')
+plt.title('Speed-up Relative to First Run')
+plt.xlabel('Run Index')
+plt.ylabel('Speed-up')
+plt.grid(True)
+plt.tight_layout()
+plt.savefig('Speed-ups')
