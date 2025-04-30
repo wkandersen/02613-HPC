@@ -71,3 +71,5 @@ if __name__ == '__main__':
     for bid, stats in results:
         print(f"{bid}, {stats['mean_temp']}, {stats['std_temp']}, {stats['pct_above_18']}, {stats['pct_below_15']}")
     print(f"\nElapsed time: {end - start:.2f} seconds")
+    
+    
