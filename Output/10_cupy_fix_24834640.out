@@ -12,15 +12,15 @@ building_id, mean_temp, std_temp, pct_above_18, pct_below_15
 
 ------------------------------------------------------------
 Sender: LSF System <lsfadmin@hpc.dtu.dk>
-Subject: Job 24764859: <gpujob> in cluster <dcc> Done
+Subject: Job 24834640: <gpujob> in cluster <dcc> Done
 
-Job <gpujob> was submitted from host <n-62-30-3> by user <s224197> in cluster <dcc> at Wed Apr 23 13:30:35 2025
-Job was executed on host(s) <4*n-62-12-22>, in queue <c02613>, as user <s224197> in cluster <dcc> at Wed Apr 23 13:30:35 2025
-</zhome/b3/6/187211> was used as the home directory.
-</zhome/b3/6/187211/Desktop> was used as the working directory.
-Started at Wed Apr 23 13:30:35 2025
-Terminated at Wed Apr 23 13:31:02 2025
-Results reported at Wed Apr 23 13:31:02 2025
+Job <gpujob> was submitted from host <n-62-27-17> by user <s224227> in cluster <dcc> at Wed Apr 30 10:57:06 2025
+Job was executed on host(s) <4*n-62-12-22>, in queue <c02613>, as user <s224227> in cluster <dcc> at Wed Apr 30 10:57:08 2025
+</zhome/d1/b/187261> was used as the home directory.
+</zhome/d1/b/187261/Desktop/02613-HPC> was used as the working directory.
+Started at Wed Apr 30 10:57:08 2025
+Terminated at Wed Apr 30 10:57:29 2025
+Results reported at Wed Apr 30 10:57:29 2025
 
 Your job looked like:
 
@@ -34,28 +34,28 @@ Your job looked like:
 #BSUB -R "rusage[mem=1GB]"
 #BSUB -gpu "num=1:mode=exclusive_process"
 #BSUB -W 00:30
-#BSUB -o 9_cupy_%J.out
-#BSUB -e 9_cupy_%J.err
+#BSUB -o 10_cupy_fix_%J.out
+#BSUB -e 10_cupy_fix_%J.err
 source /dtu/projects/02613_2025/conda/conda_init.sh
 conda activate 02613
 
-time python 02613-HPC/py_filer/9_cupy 10
+time python py_filer/10_cupy_fix.py 10
 ------------------------------------------------------------
 
 Successfully completed.
 
 Resource usage summary:
 
-    CPU time :                                   25.15 sec.
-    Max Memory :                                 93 MB
-    Average Memory :                             93.00 MB
+    CPU time :                                   19.86 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
     Total Requested Memory :                     4096.00 MB
-    Delta Memory :                               4003.00 MB
+    Delta Memory :                               -
     Max Swap :                                   -
-    Max Processes :                              4
-    Max Threads :                                7
-    Run time :                                   30 sec.
-    Turnaround time :                            27 sec.
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   55 sec.
+    Turnaround time :                            23 sec.
 
 The output (if any) is above this job summary.
 
@@ -63,5 +63,5 @@ The output (if any) is above this job summary.
 
 PS:
 
-Read file <9_cupy_24764859.err> for stderr output of this job.
+Read file <10_cupy_fix_24834640.err> for stderr output of this job.
 

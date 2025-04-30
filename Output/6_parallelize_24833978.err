@@ -1,0 +1,65 @@
+Loaded module: cuda/11.8
+
+real	3m26.854s
+user	3m26.498s
+sys	0m0.549s
+
+real	1m51.634s
+user	3m39.514s
+sys	0m0.604s
+
+real	1m27.864s
+user	4m15.164s
+sys	0m0.673s
+
+real	1m16.390s
+user	4m43.767s
+sys	0m0.677s
+
+real	1m7.737s
+user	5m16.573s
+sys	0m0.699s
+
+real	0m58.330s
+user	5m14.167s
+sys	0m0.758s
+
+real	0m51.571s
+user	5m21.626s
+sys	0m0.881s
+
+real	0m49.033s
+user	5m30.870s
+sys	0m0.998s
+
+real	0m45.578s
+user	5m35.453s
+sys	0m0.834s
+
+real	0m42.843s
+user	5m46.008s
+sys	0m1.073s
+
+real	0m39.869s
+user	5m44.562s
+sys	0m1.080s
+
+real	0m41.693s
+user	5m57.575s
+sys	0m1.104s
+
+real	0m39.122s
+user	6m19.158s
+sys	0m1.162s
+
+real	0m36.264s
+user	6m29.429s
+sys	0m1.180s
+
+real	0m36.531s
+user	6m46.235s
+sys	0m1.245s
+
+real	0m35.519s
+user	6m56.625s
+sys	0m1.266s

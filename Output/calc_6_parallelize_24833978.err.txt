@@ -1,0 +1,64 @@
+p = 1
+Parallel fraction: 0.0
+Theoretical maximum speed up: 1.0
+Calculated speed up: 1.0
+p = 2
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 1.9
+p = 3
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 2.4
+p = 4
+Parallel fraction: 0.8
+Theoretical maximum speed up: 5.000000000000001
+Calculated speed up: 2.7
+p = 5
+Parallel fraction: 0.8
+Theoretical maximum speed up: 5.000000000000001
+Calculated speed up: 3.1
+p = 6
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 3.5
+p = 7
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 4.0
+p = 8
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 4.2
+p = 9
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 4.5
+p = 10
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 4.8
+p = 11
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 5.2
+p = 12
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 5.0
+p = 13
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 5.3
+p = 14
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 5.7
+p = 15
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 5.7
+p = 16
+Parallel fraction: 0.9
+Theoretical maximum speed up: 10.000000000000002
+Calculated speed up: 5.8

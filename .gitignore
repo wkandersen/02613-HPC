@@ -5,6 +5,8 @@ __pycache__/
 *$py.class
 10_nsys.sqlite
 10_nsys.nsys-rep
+10_nsys_fix.sqlite
+10_nsys_fix.nsys-rep
 
 # C extensions
 *.so
