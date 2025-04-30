@@ -3,6 +3,8 @@ data/
 __pycache__/
 *.py[cod]
 *$py.class
+10_nsys.sqlite
+10_nsys.nsys-rep
 
 # C extensions
 *.so
