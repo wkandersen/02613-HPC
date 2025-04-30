@@ -1,18 +1,17 @@
-NumPy Jacobi time: 4.8885 seconds
-CUDA Jacobi time: 0.7086 seconds
-Max difference between NumPy and CUDA: 24.998647
+NumPy Jacobi time: 105.0369 seconds
+CUDA Jacobi time: 3.7865 seconds
 
 ------------------------------------------------------------
 Sender: LSF System <lsfadmin@hpc.dtu.dk>
-Subject: Job 24765353: <numbacuda> in cluster <dcc> Done
+Subject: Job 24834605: <numbacuda> in cluster <dcc> Done
 
-Job <numbacuda> was submitted from host <n-62-27-22> by user <s224225> in cluster <dcc> at Wed Apr 23 14:00:37 2025
-Job was executed on host(s) <4*n-62-18-5>, in queue <gpua10>, as user <s224225> in cluster <dcc> at Wed Apr 23 14:00:38 2025
+Job <numbacuda> was submitted from host <n-62-30-6> by user <s224225> in cluster <dcc> at Wed Apr 30 10:54:02 2025
+Job was executed on host(s) <4*n-62-12-22>, in queue <c02613>, as user <s224225> in cluster <dcc> at Wed Apr 30 10:54:04 2025
 </zhome/5f/a/186998> was used as the home directory.
 </zhome/5f/a/186998/Desktop/HPC_course/02613-HPC> was used as the working directory.
-Started at Wed Apr 23 14:00:38 2025
-Terminated at Wed Apr 23 14:00:51 2025
-Results reported at Wed Apr 23 14:00:51 2025
+Started at Wed Apr 30 10:54:04 2025
+Terminated at Wed Apr 30 10:55:58 2025
+Results reported at Wed Apr 30 10:55:58 2025
 
 Your job looked like:
 
@@ -21,7 +20,7 @@ Your job looked like:
 #!/bin/bash
 
 #BSUB -J numbacuda
-#BSUB -q gpua10
+#BSUB -q c02613
 #BSUB -W 00:10
 #BSUB -n 4
 #BSUB -R "rusage[mem=1G]" 
@@ -37,23 +36,23 @@ export PYTHONPATH=$PYTHONPATH:$(pwd)/py_filer
 source /dtu/projects/02613_2025/conda/conda_init.sh
 conda activate 02613
 
-python py_filer/simulate_numba_cuda.py 
+python py_filer/simulate_numba_cuda.py 10
 ------------------------------------------------------------
 
 Successfully completed.
 
 Resource usage summary:
 
-    CPU time :                                   9.83 sec.
-    Max Memory :                                 76 MB
-    Average Memory :                             76.00 MB
+    CPU time :                                   111.69 sec.
+    Max Memory :                                 113 MB
+    Average Memory :                             107.33 MB
     Total Requested Memory :                     4096.00 MB
-    Delta Memory :                               4020.00 MB
+    Delta Memory :                               3983.00 MB
     Max Swap :                                   -
     Max Processes :                              4
     Max Threads :                                5
-    Run time :                                   15 sec.
-    Turnaround time :                            14 sec.
+    Run time :                                   116 sec.
+    Turnaround time :                            116 sec.
 
 The output (if any) is above this job summary.
 
@@ -61,5 +60,5 @@ The output (if any) is above this job summary.
 
 PS:
 
-Read file <Output/cuda7_24765353.err> for stderr output of this job.
+Read file <Output/cuda7_24834605.err> for stderr output of this job.
 

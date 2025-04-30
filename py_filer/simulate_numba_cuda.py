@@ -27,67 +27,34 @@ def jacobi(u, interior_mask, max_iter, atol=1e-6):
 
 
 @cuda.jit
-def jacobi_kernel(u, u_new, indices, N, M):
-    idx = cuda.grid(1)
+def jacobi_kernel(u, u_new, interior_mask, N, M):
+    i, j = cuda.grid(2)
 
-    if idx < len(indices):
-        i, j = indices[idx]
+    if 1 <= i < N-1 and 1 <= j < M-1:
+        if interior_mask[i-1, j-1]:
+            u_new[i, j] = 0.25 * (u[i, j-1] + u[i, j+1] + u[i-1, j] + u[i+1, j])
+        else:
+            u_new[i, j] = u[i, j]  # copy unchanged values
 
-        # Only update interior points (no boundary points)
-        if 0 < i < N-1 and 0 < j < M-1:
-            # Debug: print the indices and current values
-            if i == 10 and j == 10:  # Just as an example for debugging at a specific point
-                print(f"Thread {idx} updating point ({i}, {j})")
-
-            # Print old values before update (can cause performance drop)
-            if i == 10 and j == 10:  # Debug specific point (optional)
-                print(f"Before update u[{i},{j}]: {u[i,j]}, u_new[{i},{j}]: {u_new[i,j]}")
-            
-            # Jacobi update rule
-            u_new[i, j] = 0.25 * (u[i-1, j] + u[i+1, j] + u[i, j-1] + u[i, j+1])
-            
-            # Debug: print the new value after the update
-            if i == 10 and j == 10:  # Debug specific point (optional)
-                print(f"After update u_new[{i},{j}]: {u_new[i,j]}")
-
-# Main function for executing the Jacobi solver on the GPU
-def jacobi_cuda(u, indices, max_iter):
+def jacobi_cuda(u, interior_mask, max_iter):
     N, M = u.shape
-    # Create device arrays for u and u_new
-    u_device = cuda.to_device(u.astype(np.float32))
-    u_new_device = cuda.device_array_like(u_device)
+    interior_N, interior_M = N-2, M-2
 
-    # Transfer indices to device
-    indices_device = cuda.to_device(indices)
+    u_d = cuda.to_device(u)
+    u_new_d = cuda.device_array_like(u_d)
+    mask_d = cuda.to_device(interior_mask)
 
-    # Define grid and block size
-    threads_per_block = 256
-    blocks_per_grid = (len(indices) + threads_per_block - 1) // threads_per_block
+    threadsperblock = (16, 16)
+    blockspergrid_x = (interior_N + threadsperblock[0] - 1) // threadsperblock[0]
+    blockspergrid_y = (interior_M + threadsperblock[1] - 1) // threadsperblock[1]
+    blockspergrid = (blockspergrid_x, blockspergrid_y)
 
-    # Debug: Print initial u values (before the first iteration)
-    print("Initial u values:")
-    print(u[:5, :5])  # Print a small section to avoid overwhelming output
+    for _ in range(max_iter):
+        jacobi_kernel[blockspergrid, threadsperblock](u_d, u_new_d, mask_d, interior_N, interior_M)
+        u_d, u_new_d = u_new_d, u_d
 
-    # Perform the Jacobi iterations
-    for iter_num in range(max_iter):
-        # Debug: Print iteration number
-        print(f"Iteration {iter_num+1}:")
-
-        # Launch kernel for one Jacobi iteration
-        jacobi_kernel[blocks_per_grid, threads_per_block](u_device, u_new_device, indices_device, N, M)
-
-        # Swap u and u_new for the next iteration
-        u_device, u_new_device = u_new_device, u_device
-
-        # Debug: Print u after kernel execution
-        if iter_num % 100 == 0:  # Print every 100th iteration to reduce output
-            u_host = u_device.copy_to_host()
-            print(f"u after iteration {iter_num+1} (first 5x5 block):")
-            print(u_host[:5, :5])  # Print a small section to avoid overwhelming output
-
-    # Return the result after all iterations
-    return u_device.copy_to_host()
-
+    result = u_d.copy_to_host()
+    return result
 
 def summary_stats(u, interior_mask):
     u_interior = u[1:-1, 1:-1][interior_mask]
@@ -132,17 +99,6 @@ if __name__ == '__main__':
     start = time.time()
     all_u_cuda = np.empty_like(all_u0)
     for i in range(N):
-        # Generate indices for interior points
-        indices = np.array(np.nonzero(all_interior_mask[i])).T  # (num_interior, 2)
-
-        # Debug: Print out the first few indices
-        print(f"Interior points for building {i+1}:")
-        print(indices[:5])  # Print first 5 indices for debugging
-
-        u_cuda = jacobi_cuda(all_u0[i], indices, MAX_ITER)
+        u_cuda = jacobi_cuda(all_u0[i], all_interior_mask[i], MAX_ITER)
         all_u_cuda[i] = u_cuda
     print(f"CUDA Jacobi time: {time.time() - start:.4f} seconds")
-
-    # Difference check
-    diff = np.abs(all_u_numpy - all_u_cuda).max()
-    print(f"Max difference between NumPy and CUDA: {diff:.6f}")
