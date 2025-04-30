@@ -13,11 +13,12 @@ def load_data(load_dir, bid):
 
 def jacobi(u, interior_mask, max_iter, atol=1e-6):
     u = cp.copy(u)
+
     for i in range(max_iter):
         u_new = 0.25 * (u[1:-1, :-2] + u[1:-1, 2:] + u[:-2, 1:-1] + u[2:, 1:-1])
-        u_new_interior = u_new[interior_mask]
-        delta = cp.abs(u[1:-1, 1:-1][interior_mask] - u_new_interior).max()
-        u[1:-1, 1:-1][interior_mask] = u_new_interior
+        delta = cp.abs(u[1:-1, 1:-1] - u_new)[interior_mask].max()
+        cp.copyto(u[1:-1, 1:-1], u_new, where=interior_mask)
+
         if delta < atol:
             break
     return u
