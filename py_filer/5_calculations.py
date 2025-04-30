@@ -18,7 +18,7 @@ speed_up = {i+1: real_seconds[0] / real_seconds[i] for i in range(1, len(real_se
 plt.figure(figsize=(8, 5))
 plt.plot(list(speed_up.keys()), list(speed_up.values()), marker='o', linestyle='-')
 plt.title('Speed-up Relative to First Run')
-plt.xlabel('Run Index')
+plt.xlabel('Number of Processes')
 plt.ylabel('Speed-up')
 plt.grid(True)
 plt.tight_layout()
