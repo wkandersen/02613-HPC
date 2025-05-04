@@ -95,7 +95,7 @@ if __name__ == '__main__':
         all_u_numpy[i] = jacobi(all_u0[i], all_interior_mask[i], MAX_ITER, ABS_TOL)
     print(f"NumPy Jacobi time: {time.time() - start:.4f} seconds")
 
-    # CUDA Jacobi timing with debugging
+    # CUDA Jacobi timing
     start = time.time()
     all_u_cuda = np.empty_like(all_u0)
     for i in range(N):

@@ -105,7 +105,3 @@ if __name__ == '__main__':
         u_numba = jacobi_numba(u0, interior_mask_indices, MAX_ITER, ABS_TOL)
         all_u_numba[i] = u_numba
     print(f"Numba Jacobi time: {time.time() - start:.4f} seconds")
-
-    # Max difference
-    diff = np.abs(all_u_numpy - all_u_numba).max()
-    print(f"Difference between implementations: {diff:.6f}")
